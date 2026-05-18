@@ -1,5 +1,5 @@
-import { signUpSchema } from "../schema/auth.schema";
-import { productSchema} from "../schema/auth.schema";
+import { signUpSchema } from "../schema/auth.schema.js";
+import { productSchema} from "../schema/auth.schema.js";
 
 export const validateSignUpRequest = (data) => {
     const validationresult = signUpSchema.safeParse(data);

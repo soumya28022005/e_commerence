@@ -6,7 +6,7 @@ import { ProductModel } from "../models/productSchema.model.js";
 export const AddCart= async (req,res)=>{
     const userId= req.user.id;
     const quantity= req.body.quantity;
-    const productId= req.params.productId;
+    const productId= req.params.id;
     if(quantity <= 0){
     return res.status(400).json({
         message: "Quantity must be greater than 0"
@@ -76,7 +76,7 @@ export const AddCart= async (req,res)=>{
 
 export const removeCart= async (req,res)=> {
     const userId= req.user.id;
-    const productId= req.params.productId;
+    const productId= req.params.id;
 
     try {
          // find product

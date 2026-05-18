@@ -7,16 +7,16 @@ export const orderfromcart= async (req,res)=>{
     const cartId= req.params.cartId;
     
     try{
-        const cart= await cart.findById(cartId);
+        const userCart= await cart.findById(cartId);
 
-        if(!cart){
+        if(! userCart){
             return res.status(404).json({message: "cari is empty"});
         }
 
         const neworder= await orderModel.create({
-            userId: cart.userId,
-            products: cart.products,
-            totalprice: cart.totalprice,
+            userId: userCart.userId,
+            products:  userCart.products,
+            totalprice:  userCart.totalprice,
         })
 
         return res.status(201).json({message: "your order successfully created", neworder: neworder});
