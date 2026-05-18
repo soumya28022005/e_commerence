@@ -89,6 +89,10 @@ export const updateProduct= async (req, res)=>{
         if(!product){
             return res.status(404).json({error: "Product not found"});
         }
+        if (product.sellerId.toString() !== req.user.id && req.user.role !== "admin") {
+        return res.status(403).json({error: "You can only edit your own products"});
+        }
+
          const {name, quantity, price, description, category, status, rating, reviews} = req.body;
 
          // image if change
