@@ -12,13 +12,16 @@ export const orderfromcart= async (req,res)=>{
         if(! userCart){
             return res.status(404).json({message: "cari is empty"});
         }
+        if (userCart.userId.toString() !== req.user.id) {
+        return res.status(403).json({message: "Unauthorized access to cart"});
+        }
 
         const neworder= await orderModel.create({
             userId: userCart.userId,
             products:  userCart.products,
             totalprice:  userCart.totalprice,
         })
-
+        await cart.findByIdAndDelete(cartId);
         return res.status(201).json({message: "your order successfully created", neworder: neworder});
 
 

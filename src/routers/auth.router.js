@@ -7,7 +7,7 @@ const authRouter = express.Router();
 
 authRouter.post("/register", signUp);
 authRouter.post("/login", signIn);
-authRouter.delete("/delete-user/:id", userAuthentication, deleteUser);
+authRouter.delete("/delete-user", userAuthentication, deleteUser);
 
 
 export default authRouter;

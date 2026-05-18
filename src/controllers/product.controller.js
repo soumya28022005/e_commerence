@@ -51,12 +51,19 @@ export const createProduct = async (req, res)=>{
 export const deleteProduct =async (req, res)=>{
     try { 
         const id= req.params.id;
+
+        // 
         //console.log(id);
         const product = await ProductModel.findById(id);
         //console.log(product);
         if(!product){
             return res.status(404).json({error: "Product not found"});
         }
+        //check 
+        if (product.sellerId.toString() !== req.user.id && req.user.role !== "admin") {
+        return res.status(403).json({error: "You can only edit/delete your own products"});
+        }
+
         // deelte product from clodudaniar
         if (product.imagePublicId) {
         await cloudinary.uploader.destroy(product.imagePublicId);

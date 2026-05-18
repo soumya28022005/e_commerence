@@ -7,7 +7,7 @@ export const AddCart= async (req,res)=>{
     const userId= req.user.id;
     const quantity= req.body.quantity;
     const productId= req.params.id;
-    if(quantity <= 0){
+    if(!quantity || quantity <= 0){
     return res.status(400).json({
         message: "Quantity must be greater than 0"
     })

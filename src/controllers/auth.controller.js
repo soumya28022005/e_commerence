@@ -102,8 +102,9 @@ export const signIn= async (req, res)=>{
 // delete user controller
 
 export const deleteUser= async (req, res)=>{
-  const id= req.params.id;
+  const id= req.user.id;
   try{
+
     const user = await UserModel.findById(id);
     if(!user){
         return res.status(404).json({error: "User not found"});
