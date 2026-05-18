@@ -5,7 +5,7 @@ import { orderfromcart } from "../controllers/order.controller";
 
 const orderRouter= express.Router();
 
-orderRouter.post("/orderrouter", userAuthentication, orderfromcart);
+orderRouter.post("/orderrouter/:cartId", userAuthentication, orderfromcart);
 
 
 export default orderRouter;
