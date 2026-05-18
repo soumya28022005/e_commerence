@@ -1,6 +1,6 @@
 import { json } from "express";
 import { cart } from "../models/cartSchema.model.js";
-import { orderModel } from "../models/orderSchema.model";
+import { orderModel } from "../models/orderSchema.model.js";
 
 
 export const orderfromcart= async (req,res)=>{
