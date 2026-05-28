@@ -26,5 +26,15 @@ app.use("/api/v1/cart", cartRouter);
 
 app.use("/api/v1/order", orderRouter);
 
+app.use(("/api/v1/logout"), (req, res)=>{
+    res.clearCookie("token");
+    res.status(200).json({message: "logout successfully"});
+});
+
+// app.use("*", (req, res)=>{
+//     res.status(404).json({message: "page not found"});
+// });
+
+
 
 export default app;
